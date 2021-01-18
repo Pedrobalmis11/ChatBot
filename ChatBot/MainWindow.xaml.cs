@@ -27,17 +27,8 @@ namespace ChatBot
         public MainWindow()
         {
             InitializeComponent();
-            enviarButton.IsEnabled = false;
             ItemsControl.DataContext = listaMensaje;
 
-        }
-
-        private void enviarButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            listaMensaje.Add(new Mensaje("Usuario", mensajeTextBox.Text));
-            listaMensaje.Add(new Mensaje("Bot", "Lo siento, estoy un poco cansado para hablar."));
-            mensajeTextBox.Text = "";
         }
 
         private void CommandBinding_Executed_Nueva(object sender, ExecutedRoutedEventArgs e)
@@ -88,26 +79,9 @@ namespace ChatBot
             }
         }
 
-        private void mensajeTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (mensajeTextBox.Text == "")
-            {
-                enviarButton.IsEnabled = false;
-            }
-            else
-            {
-                enviarButton.IsEnabled = true;
-            }
-        }
-
         private void CommandBinding_Executed_Salir(object sender, ExecutedRoutedEventArgs e)
         {
             App.Current.Shutdown();
-        }
-
-        private void CommandBinding_CanExecute_Salir(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
         }
 
         private void CommandBinding_Executed_ComprobarConexion(object sender, ExecutedRoutedEventArgs e)
@@ -128,6 +102,27 @@ namespace ChatBot
         private void CommandBinding_CanExecute_Configuracion(object sender, CanExecuteRoutedEventArgs e)
         {
 
+        }
+
+        private void CommandBinding_Executed_Enviar(object sender, ExecutedRoutedEventArgs e)
+        {
+            listaMensaje.Add(new Mensaje("Usuario", mensajeTextBox.Text));
+            listaMensaje.Add(new Mensaje("Bot", "Lo siento, estoy un poco cansado para hablar."));
+            mensajeTextBox.Text = "";
+            scrollChatScrollViewer.ScrollToEnd();
+        }
+
+        private void CommandBinding_CanExecute_Enviar(object sender, CanExecuteRoutedEventArgs e)
+        {
+
+            if (mensajeTextBox != null && mensajeTextBox.Text != "")
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
         }
     }
 }

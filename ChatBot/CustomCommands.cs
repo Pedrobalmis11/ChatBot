@@ -69,5 +69,17 @@ namespace ChatBot
                 }
 
             );
+
+        public static readonly RoutedUICommand Enviar = new RoutedUICommand(
+
+            "Enviar",
+            "Enviar",
+            typeof(CustomCommands),
+            new InputGestureCollection
+                {
+                    new KeyGesture(Key.Enter)
+                }
+
+            );
     }
 }

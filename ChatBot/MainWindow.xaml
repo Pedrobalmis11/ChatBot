@@ -24,8 +24,7 @@
         </CommandBinding>
 
         <CommandBinding Command="local:CustomCommands.Salir"
-                        Executed="CommandBinding_Executed_Salir"
-                        CanExecute="CommandBinding_CanExecute_Salir">
+                        Executed="CommandBinding_Executed_Salir">
         </CommandBinding>
 
         <CommandBinding Command="local:CustomCommands.ComprobarConexion"
@@ -36,6 +35,11 @@
         <CommandBinding Command="local:CustomCommands.Configuracion"
                         Executed="CommandBinding_Executed_Configuracion"
                         CanExecute="CommandBinding_CanExecute_Configuracion">
+        </CommandBinding>
+
+        <CommandBinding Command="local:CustomCommands.Enviar"
+                        Executed="CommandBinding_Executed_Enviar"
+                        CanExecute="CommandBinding_CanExecute_Enviar">
         </CommandBinding>
     </Window.CommandBindings>
 
@@ -142,7 +146,7 @@
             </Border>
 
         </DataTemplate>
-        
+
     </Window.Resources>
 
     <Grid>
@@ -273,7 +277,7 @@
                         DockPanel.Dock="Right"
                         HorizontalAlignment="Right"
                         IsDefault="True"
-                        Click="enviarButton_Click">
+                        Command="local:CustomCommands.Enviar">
 
                     <Image Source="send.png"
                            Width="25">
@@ -282,15 +286,15 @@
                 </Button>
 
                 <TextBox x:Name="mensajeTextBox"
-                         BorderBrush="Black"
-                         TextChanged="mensajeTextBox_TextChanged">
+                         BorderBrush="Black">
 
                 </TextBox>
 
             </DockPanel>
 
 
-            <ScrollViewer HorizontalScrollBarVisibility="Disabled"
+            <ScrollViewer x:Name="scrollChatScrollViewer"
+                          HorizontalScrollBarVisibility="Disabled"
                           VerticalScrollBarVisibility="Auto">
                 <ItemsControl x:Name="ItemsControl"
                               Background="LightYellow"
