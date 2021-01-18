@@ -33,9 +33,7 @@ namespace ChatBot
 
         private void CommandBinding_Executed_Nueva(object sender, ExecutedRoutedEventArgs e)
         {
-            listaMensaje = new ObservableCollection<Mensaje>();
-
-            ItemsControl.DataContext = listaMensaje;
+            listaMensaje.Clear();
         }
 
         private void CommandBinding_CanExecute_Nueva(object sender, CanExecuteRoutedEventArgs e)
